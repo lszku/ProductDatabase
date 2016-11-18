@@ -1,0 +1,52 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET           /                          @controllers.HomeController.index2
+GET           /check                     @controllers.HomeController.check
+GET           /name                      @controllers.HomeController.hello(name: String)
+GET           /echo                      @controllers.HomeController.echo
+GET           /notfound                  @controllers.HomeController.notfound
+
+#Users
+GET           /users                     @controllers.UserController.userList
+POST          /users                     @controllers.UserController.addUser
+GET           /users/:id                 @controllers.UserController.editUser(id: Long)
+DELETE        /users/:id                 @controllers.UserController.deleteUser(id: Long)
+
+# client
+GET           /clients/:id               @controllers.ClientController.show(id: Long)
+
+GET           /about                     @controllers.Default.redirect(to = "http://www.onet.pl")
+
+#Customers
+GET           /customers                 @controllers.CustomerController.showAll
+
+#products
+GET           /products                  @controllers.ProductController.listOfProds
+GET           /product/id/:ean           @controllers.ProductController.showExisting(ean: Long)
+GET           /product/name/:name        @controllers.ProductController.showNew(name: String)
+
+GET           /products/new              @controllers.ProductController.newProduct()
+POST          /products                  @controllers.ProductController.save
+GET           /barcode/:id               @controllers.Barcode.barcode(id: Long)
+
+#slick
+GET           /slick/showall             @controllers.ClientController.showAllProducts()
+GET           /slick/insert              @controllers.ClientController.insertProducts()
+#Albums
+GET           /albums                    @controllers.AlbumController.showAlbums()
+POST          /albums/create             @controllers.AlbumController.createData
+GET           /albumsnew                 @controllers.AlbumController.selAlbumsArtists
+GET           /albumsnew2                @controllers.AlbumController.selectAlbumArtistExplicitly
+
+#GET         /album/:authorName                       @controllers.AlbumController.showAlbumWithAuthor(authorName: String)
+#GET         /albumsafter                             @controllers.AlbumController.albumsReleasedAfter1990WithNotBad()
+#GET         /updatecatshits                          @controllers.AlbumController.updateCatsHits()
+#GET         /insertpinkfloyd                         @controllers.AlbumController.insertPinkFloyd
+#GET         /insertalbum/:artist/:title/:year        @controllers.AlbumController.newAlbumInsert(artist: String, title: String, year: Int)
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file              @controllers.Assets.versioned(path="/public", file: Asset)
+GET           /webjars/*file             @controllers.WebJarAssets.at(file)
