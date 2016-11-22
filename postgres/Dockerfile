@@ -1,5 +1,5 @@
 FROM postgres:9.6
-MAINTAINER Lukasz <lukaszek_1@tlen.pl>
+MAINTAINER Lukasz <lukaszkutnik@o2.pl>
 
 ENV TINI_VERSION=0.9.0
 ENV TINI_URL=https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini
