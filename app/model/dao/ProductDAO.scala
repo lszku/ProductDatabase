@@ -5,15 +5,15 @@ import javax.inject.Inject
 import model.Product
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.driver.JdbcProfile
-import slick.lifted.TableQuery
+import slick.lifted.{ProvenShape, TableQuery}
 
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+//import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
 /**
   * Created by lukasz on 05.08.16.
   */
-class ProductDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
+class ProductDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, implicit val executionContext: ExecutionContext)
   extends HasDatabaseConfigProvider[JdbcProfile] {
 
   lazy val Products = TableQuery[ProductTable]
@@ -27,7 +27,7 @@ class ProductDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvide
 
     def desc = column[String]("descr")
 
-    def * = (ean, name, desc) <> (Product.tupled, Product.unapply)
+    def * : ProvenShape[Product] = (ean, name, desc) <> (Product.tupled, Product.unapply)
   }
 
 
@@ -40,8 +40,8 @@ class ProductDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvide
   def insert(product: Product): Future[Unit] = db.run(Products += product) map (_ => ())
 
 
-  def delete(product: Product): Future[Unit] =
-    db.run(Products.filter(_.ean === product.ean).delete).
+  def delete(ean: Long): Future[Unit] =
+    db.run(Products.filter(_.ean === ean).delete).
       map(_ => ())
 
 

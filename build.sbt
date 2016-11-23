@@ -45,6 +45,6 @@ libraryDependencies ++= Seq(
 JsEngineKeys.engineType := JsEngineKeys.EngineType.Node
 
 //DI
-routesGenerator := StaticRoutesGenerator
+routesGenerator := InjectedRoutesGenerator
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

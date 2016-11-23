@@ -31,11 +31,11 @@ class ProductController @Inject()(productDAO: ProductDAO, val messagesApi: Messa
   def showExisting(ean: Long) = Action.async { implicit req =>
     productDAO.findByEan(ean) map { case product =>
       Ok(views.html.products.details(product.head))
-    //case _ => Redirect(routes.ProductController.listOfProds())
+      //case _ => Redirect(routes.ProductController.listOfProds())
     }
   }
 
-  def showNew(name: String) = Action.async{implicit  req =>
+  def showNew(name: String) = Action.async { implicit req =>
     productDAO.findByName(name) map { product =>
       Ok(views.html.products.details(product.head))
     }
@@ -58,6 +58,12 @@ class ProductController @Inject()(productDAO: ProductDAO, val messagesApi: Messa
         Redirect(routes.ProductController.showNew(newProduct.name)).flashing("success" -> message)
       }
     )
+  }
+
+  def deleteProduct(ean: Long) = Action.async { implicit req =>
+    productDAO.delete(ean).map { _ =>
+      Redirect(routes.ProductController.listOfProds())
+    }
   }
 }
 

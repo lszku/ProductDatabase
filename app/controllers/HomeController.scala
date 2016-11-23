@@ -6,6 +6,7 @@ import akka.stream.scaladsl.FileIO
 import akka.util.ByteString
 import play.api.http.HttpEntity
 import play.api.i18n.{I18nSupport, MessagesApi}
+import play.api.libs.json.Json
 import play.api.mvc._
 
 /**
@@ -43,6 +44,12 @@ class HomeController @Inject()(val messagesApi: MessagesApi) extends Controller 
 
   def check() = Action{
     Ok("OK")
+  }
+
+  def version = Action{
+    val version = Map("version"-> 0.1)
+    val jsonVer = Json.toJson(version)
+    Ok(jsonVer)
   }
 
 }

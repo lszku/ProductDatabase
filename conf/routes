@@ -30,6 +30,7 @@ GET           /product/name/:name        @controllers.ProductController.showNew(
 
 GET           /products/new              @controllers.ProductController.newProduct()
 POST          /products                  @controllers.ProductController.save
+DELETE        /products/:ean             @controllers.ProductController.deleteProduct(ean: Long)
 GET           /barcode/:id               @controllers.Barcode.barcode(id: Long)
 
 #slick
@@ -41,6 +42,8 @@ POST          /albums/create             @controllers.AlbumController.createData
 GET           /albumsnew                 @controllers.AlbumController.selAlbumsArtists
 GET           /albumsnew2                @controllers.AlbumController.selectAlbumArtistExplicitly
 
+
+
 #GET         /album/:authorName                       @controllers.AlbumController.showAlbumWithAuthor(authorName: String)
 #GET         /albumsafter                             @controllers.AlbumController.albumsReleasedAfter1990WithNotBad()
 #GET         /updatecatshits                          @controllers.AlbumController.updateCatsHits()
@@ -50,3 +53,4 @@ GET           /albumsnew2                @controllers.AlbumController.selectAlbu
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file              @controllers.Assets.versioned(path="/public", file: Asset)
 GET           /webjars/*file             @controllers.WebJarAssets.at(file)
+GET           /version                   @controllers.HomeController.version

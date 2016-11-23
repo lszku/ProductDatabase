@@ -2,7 +2,62 @@
 
 # --- !Ups
 
-create table "products" (
+CREATE TABLE products (
+  ean BIGSERIAL PRIMARY KEY UNIQUE,
+  name  TEXT NOT NULL,
+  descr TEXT NOT NULL
+);
+
+CREATE TABLE users (
+  id BIGSERIAL PRIMARY KEY UNIQUE,
+  email      TEXT NOT NULL,
+  first_name TEXT,
+  last_name  TEXT
+);
+
+CREATE TABLE addresses (
+  id            BIGSERIAL PRIMARY KEY UNIQUE,
+  customer_id   BIGINT NOT NULL,
+  street        TEXT,
+  house_nr      TEXT,
+  apartament_nr TEXT,
+  zip           TEXT,
+  city          TEXT,
+  country       TEXT
+);
+
+CREATE TABLE customers (
+  id           BIGSERIAL PRIMARY KEY UNIQUE,
+  first_name   TEXT NOT NULL,
+  last_name    TEXT NOT NULL,
+  properties1  TEXT,
+  properties2  TEXT,
+  properties3  TEXT,
+  properties4  TEXT,
+  properties5  TEXT,
+  properties6  TEXT,
+  properties7  TEXT,
+  properties8  TEXT,
+  properties9  TEXT,
+  properties10 TEXT,
+  properties11 TEXT,
+  properties12 TEXT,
+  properties13 TEXT,
+  properties14 TEXT,
+  properties15 TEXT,
+  properties16 TEXT,
+  properties17 TEXT,
+  properties18 TEXT,
+  properties19 TEXT
+);
+
+# --- !Downs
+DROP TABLE products;
+DROP TABLE "users";
+DROP TABLE "addresses";
+DROP TABLE "customers";
+
+/*create table "products" (
     "ean" bigint(20) not null auto_increment,
     "name" varchar(255) not null,
     "descr" varchar(250) not null
@@ -50,13 +105,6 @@ CREATE TABLE "customers" (
   "properties17" VARCHAR(255),
   "properties18" VARCHAR(255),
   "properties19" VARCHAR(255)
-);
+);*/
 
 
-
-
-# --- !Downs
-drop table "products";
-drop table "users";
-drop table "addresses";
-drop table "customers";
