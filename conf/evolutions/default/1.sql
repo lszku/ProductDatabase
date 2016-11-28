@@ -5,7 +5,8 @@
 CREATE TABLE products (
   ean BIGSERIAL PRIMARY KEY UNIQUE,
   name  TEXT NOT NULL,
-  descr TEXT NOT NULL
+  descr TEXT NOT NULL,
+  active_prod BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE users (

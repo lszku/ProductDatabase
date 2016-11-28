@@ -6,7 +6,9 @@ package model
   */
 case class Product(ean: Long=0L,
                    name: String,
-                   desc: String) {
+                   desc: String,
+                   active: Boolean=true
+                  ) {
 
 }
 

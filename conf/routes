@@ -9,6 +9,9 @@ GET           /name                      @controllers.HomeController.hello(name:
 GET           /echo                      @controllers.HomeController.echo
 GET           /notfound                  @controllers.HomeController.notfound
 
+GET           /exampleform               @controllers.FormTestController.formTest
+POST          /exampleform               @controllers.FormTestController.saveController
+
 #Users
 GET           /users                     @controllers.UserController.userList
 POST          /users                     @controllers.UserController.addUser

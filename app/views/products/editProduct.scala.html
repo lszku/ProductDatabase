@@ -13,6 +13,7 @@
                 @b3.number(productForm("ean"), '_label -> Messages("product.id"))
                 @b3.text(productForm("name"), '_label -> Messages("product.name"))
                 @b3.textarea(productForm("desc"), '_label -> Messages("product.desc"))
+                @b3.checkbox(productForm("active "),'_label->Messages("product.active"))
                 @b3.submit('class -> "btn btn-default") {
                     @Messages("product.new.submit")
                 }

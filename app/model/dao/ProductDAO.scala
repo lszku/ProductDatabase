@@ -27,7 +27,9 @@ class ProductDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvide
 
     def desc = column[String]("descr")
 
-    def * : ProvenShape[Product] = (ean, name, desc) <> (Product.tupled, Product.unapply)
+    def active = column[Boolean]("active_prod")
+
+    def * : ProvenShape[Product] = (ean, name, desc, active) <> (Product.tupled, Product.unapply)
   }
 
 

@@ -20,16 +20,17 @@ class ProductController @Inject()(productDAO: ProductDAO, val messagesApi: Messa
     Forms.mapping(
       "ean" -> Forms.longNumber,
       "name" -> Forms.nonEmptyText,
-      "desc" -> Forms.nonEmptyText
+      "desc" -> Forms.nonEmptyText,
+      "active" -> Forms.boolean
     )(Product.apply)(Product.unapply)
   )
 
   def listOfProds = Action.async { implicit req =>
-    productDAO.findAll().map { case products => Ok(views.html.list(products)) }
+    productDAO.findAll().map { products => Ok(views.html.list(products)) }
   }
 
   def showExisting(ean: Long) = Action.async { implicit req =>
-    productDAO.findByEan(ean) map { case product =>
+    productDAO.findByEan(ean) map { product =>
       Ok(views.html.products.details(product.head))
       //case _ => Redirect(routes.ProductController.listOfProds())
     }

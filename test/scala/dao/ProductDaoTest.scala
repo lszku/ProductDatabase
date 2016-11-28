@@ -41,7 +41,7 @@ object Injector {
 
 object EvolutionHelper {
   def clean() = {
-    val dbapi = Injector.inject[DBApi]
-    Evolutions.cleanupEvolutions(dbapi.database("default"))
+    val dbApi = Injector.inject[DBApi]
+    Evolutions.cleanupEvolutions(dbApi.database("default"))
   }
 }

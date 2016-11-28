@@ -1,0 +1,44 @@
+@import model.ExampleData
+@(exampleForm: Form[ExampleData])(implicit messages: Messages, flash: play.api.mvc.Flash)
+
+@import b3.vertical.fieldConstructor
+@import helper._
+
+@names = @{
+    Seq(("1", "Text2"), ("2", "Text3"))
+}
+
+@main(Messages("user.details")) {
+
+    @b3.form(action = routes.FormTestController.saveController()) {
+        <fieldset>
+            <legend>
+            @Messages("product.details", Messages("user.details"))
+            </legend>
+            @b3.number(exampleForm("id"), '_label -> "id")
+            @b3.text(exampleForm("name"), '_label -> "name")
+            @b3.checkbox(exampleForm("married"), '_label -> "married")
+
+            @b3.radio(exampleForm("married"), options = Seq("M" -> "Male", "F" -> "Female"), '_label -> "radio Group")
+
+            @b3.select(exampleForm("name"),
+                names,
+                '_label -> "Name",
+                '_default -> "-- Choose a name --",
+                '_showConstraints -> false
+            )
+            @b3.checkbox(exampleForm("ifMarried"), '_label -> Messages("user.ifMarried"), 'id -> "squaredFour",'class-> "inline")
+
+
+            @* @b3.datepicker(exampleForm("sinceThen"), 'value -> "01.01.2016")(
+                exampleForm("dateTo"), 'value -> "31-12-2016")
+            )('_label->"DDate range", "data-date-start-date" -> "01-01-2014",
+            '_help -> "Select a date range from 10-11-2014" )) *@
+
+            @b3.submit('class -> "btn btn-default") {
+                Nowy
+            }
+        </fieldset>
+
+    }
+}
