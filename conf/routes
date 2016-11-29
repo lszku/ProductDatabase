@@ -36,6 +36,10 @@ POST          /products                  @controllers.ProductController.save
 DELETE        /products/:ean             @controllers.ProductController.deleteProduct(ean: Long)
 GET           /barcode/:id               @controllers.Barcode.barcode(id: Long)
 
+#products SPA
+GET           /productsjson              @controllers.ProductController.listOfProdsJson
+POST          /productsjson              @controllers.ProductController.saveProdJson
+
 #slick
 GET           /slick/showall             @controllers.ClientController.showAllProducts()
 GET           /slick/insert              @controllers.ClientController.insertProducts()

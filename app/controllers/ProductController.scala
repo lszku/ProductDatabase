@@ -7,6 +7,7 @@ import model.dao.ProductDAO
 import play.api.data.{Form, Forms}
 import play.api.i18n.{I18nSupport, Messages, MessagesApi}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller, Flash}
 
 /**
@@ -28,6 +29,13 @@ class ProductController @Inject()(productDAO: ProductDAO, val messagesApi: Messa
   def listOfProds = Action.async { implicit req =>
     productDAO.findAll().map { products => Ok(views.html.list(products)) }
   }
+
+  def listOfProdsJson = Action.async { implicit req =>
+    productDAO.findAll().map { products => Ok(Json.toJson(products))}
+  }
+
+  def saveProdJson() = play.mvc.Results.TODO
+
 
   def showExisting(ean: Long) = Action.async { implicit req =>
     productDAO.findByEan(ean) map { product =>
@@ -66,5 +74,7 @@ class ProductController @Inject()(productDAO: ProductDAO, val messagesApi: Messa
       Redirect(routes.ProductController.listOfProds())
     }
   }
+
+
 }
 

@@ -18,7 +18,7 @@ class FormTestController @Inject()(val messagesApi: MessagesApi)
   val exampleForm = Form(
     mapping(
       "id" -> longNumber,
-      "name" -> text,
+      "name" -> nonEmptyText(minLength = 5, maxLength = 20),
       "married" -> mapping(
         "ifMarried" -> boolean,
         "sinceThen" -> optional(date),

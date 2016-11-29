@@ -2,7 +2,7 @@
 @(exampleForm: Form[ExampleData])(implicit messages: Messages, flash: play.api.mvc.Flash)
 
 @import b3.vertical.fieldConstructor
-@import helper._
+
 
 @names = @{
     Seq(("1", "Text2"), ("2", "Text3"))
@@ -29,6 +29,9 @@
             )
             @b3.checkbox(exampleForm("ifMarried"), '_label -> Messages("user.ifMarried"), 'id -> "squaredFour",'class-> "inline")
 
+            <div>
+            @b3.text( exampleForm("name"), '_label -> "Inline input text" )(b3.inline.fieldConstructor, implicitly[Messages])
+            </div>
 
             @* @b3.datepicker(exampleForm("sinceThen"), 'value -> "01.01.2016")(
                 exampleForm("dateTo"), 'value -> "31-12-2016")
